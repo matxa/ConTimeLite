@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_io/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon_io/favicon-16x16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>ConTime Lite</title>
+</head>
+<body>
+    <form method="POST" class="main">
+        <div class="header">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="contime_logo">
+            <div class="header-bar"></div>
+        </div>
+        <div class="empty-space"></div>
+        <p class="author">SWE <a href="https://iamramos.tech/">@matxa</a></p>
+        <div class="beta">BETA</div>
+
+        <div class="form">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {{ form.hidden_tag() }}
+            <!-- Name -->
+            {{ form.name.label }}
+            {{ form.name }}
+            <!-- Job Title -->
+            {{ form.job_title.label }}
+            {{ form.job_title }}
+            <!-- Employee Email -->
+            {{ form.employee_email.label }}
+            {{ form.employee_email }}
+            <!-- Manager Email -->
+            {{ form.manager_email.label }}
+            {{ form.manager_email }}
+            <span id="submit">Submit</span>
+            <div class="yes-no">
+                <span class="btn-no">No</span>
+                <button class="btn-yes" type="submit">Yes</button>
+            </div>
+        </div>
+
+        <div class="calendar" id="calendar">
+
+            <!-- Monday -->
+            <div class="day" id="1">
+                <h3>Monday, {{ week[0] }}</h3>
+                <div class="input" class="days">
+                    {{ days.hidden_tag() }}
+                    <!-- Hours -->
+                    {{ days.mon_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.mon_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.mon_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Tuesday -->
+            <div class="day" id="2">
+                <h3>Tuesday, {{ week[1] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.tue_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.tue_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.tue_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Wednesday -->
+            <div class="day" id="3">
+                <h3>Wednesday, {{ week[2] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.wed_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.wed_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.wed_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Thursday -->
+            <div class="day" id="4">
+                <h3>Thursday, {{ week[3] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.thu_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.thu_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.thu_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Friday -->
+            <div class="day" id="5">
+                <h3>Friday, {{ week[4] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.fri_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.fri_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.fri_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Saturday -->
+            <div class="day" id="6">
+                <h3>Saturday, {{ week[5] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.sat_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.sat_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.sat_job_description(class='des') }}
+                </div>
+            </div>
+
+            <!-- Sunday -->
+            <div class="day" id="7">
+                <h3>Sunday, {{ week[6] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.sun_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.sun_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.sun_job_description(class='des') }}
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(".yes-no").hide()
+        $("#submit").click(function(){
+            $("#submit").hide()
+            $(".yes-no").show()
+        })
+        $(".btn-no").click(function(){
+            $(".yes-no").hide()
+            $("#submit").show()
+        })
+
+        // SET TIMER FOR FLASHED MESSAGES
+        setTimeout(function() {
+            $('.flash-error').hide()
+            $('.flash-success').hide()
+        }, 10000);
+    </script>
+</body>
+</html>
