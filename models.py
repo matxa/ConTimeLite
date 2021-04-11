@@ -84,47 +84,47 @@ class Days(FlaskForm):
         week = current_week()
         days = {
             "total_hours": self.total_hours(),
-            "monday": {
+            "sunday": {
                 "day": week[0],
+                "hours": self.sun_hours.data,
+                "location": self.sun_location.data,
+                "job_description": self.sun_job_description.data
+            },
+            "monday": {
+                "day": week[1],
                 "hours": self.mon_hours.data,
                 "location": self.mon_location.data,
                 "job_description": self.mon_job_description.data
             },
             "tuesday": {
-                "day": week[1],
+                "day": week[2],
                 "hours": self.tue_hours.data,
                 "location": self.tue_location.data,
                 "job_description": self.tue_job_description.data
             },
             "wednesday": {
-                "day": week[2],
+                "day": week[3],
                 "hours": self.wed_hours.data,
                 "location": self.wed_location.data,
                 "job_description": self.wed_job_description.data
             },
             "thursday": {
-                "day": week[3],
+                "day": week[4],
                 "hours": self.thu_hours.data,
                 "location": self.thu_location.data,
                 "job_description": self.thu_job_description.data
             },
             "friday": {
-                "day": week[4],
+                "day": week[5],
                 "hours": self.fri_hours.data,
                 "location": self.fri_location.data,
                 "job_description": self.fri_job_description.data
             },
             "saturday": {
-                "day": week[5],
+                "day": week[6],
                 "hours": self.sat_hours.data,
                 "location": self.sat_location.data,
                 "job_description": self.sat_job_description.data
-            },
-            "sunday": {
-                "day": week[6],
-                "hours": self.sun_hours.data,
-                "location": self.sun_location.data,
-                "job_description": self.sun_job_description.data
             }
         }
         return days
@@ -159,7 +159,7 @@ def current_week():
 
     days = []
 
-    for i in range(1, 8):
+    for i in range(7):
         day = day_one + timedelta(days=i)
         days.append(str(day.date()))
 
@@ -180,6 +180,12 @@ def schedule(personal_info: Dict, calendar: Dict, file_name: str) -> Dict:
         [
             'Week Day', 'Day', 'Hours', 'Location', 'Job Description',
             'Total Hours', 'Full Name'
+        ],
+        [
+            'Sunday',
+            calendar['sunday']['day'], calendar['sunday']['hours'],
+            calendar['sunday']['location'],
+            calendar['sunday']['job_description'], "", ""
         ],
         [
             'Monday',
@@ -216,12 +222,6 @@ def schedule(personal_info: Dict, calendar: Dict, file_name: str) -> Dict:
             calendar['saturday']['day'], calendar['saturday']['hours'],
             calendar['saturday']['location'],
             calendar['saturday']['job_description'], "", ""
-        ],
-        [
-            'Sunday',
-            calendar['sunday']['day'], calendar['sunday']['hours'],
-            calendar['sunday']['location'],
-            calendar['sunday']['job_description'], "", ""
         ],
         [
             "", "", "", "", "", calendar['total_hours'], personal_info['name']

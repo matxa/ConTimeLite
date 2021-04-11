@@ -50,10 +50,22 @@
         </div>
 
         <div class="calendar" id="calendar">
+            <!-- Sunday -->
+            <div class="day" id="7">
+                <h3>Sunday, {{ week[0] }}</h3>
+                <div class="input" class="days">
+                    <!-- Hours -->
+                    {{ days.sun_hours(class='hour') }}
+                    <!-- Location -->
+                    {{ days.sun_location(class='local') }}
+                    <!-- Job Descrition -->
+                    {{ days.sun_job_description(class='des') }}
+                </div>
+            </div>
 
             <!-- Monday -->
             <div class="day" id="1">
-                <h3>Monday, {{ week[0] }}</h3>
+                <h3>Monday, {{ week[1] }}</h3>
                 <div class="input" class="days">
                     {{ days.hidden_tag() }}
                     <!-- Hours -->
@@ -67,7 +79,7 @@
 
             <!-- Tuesday -->
             <div class="day" id="2">
-                <h3>Tuesday, {{ week[1] }}</h3>
+                <h3>Tuesday, {{ week[2] }}</h3>
                 <div class="input" class="days">
                     <!-- Hours -->
                     {{ days.tue_hours(class='hour') }}
@@ -80,7 +92,7 @@
 
             <!-- Wednesday -->
             <div class="day" id="3">
-                <h3>Wednesday, {{ week[2] }}</h3>
+                <h3>Wednesday, {{ week[3] }}</h3>
                 <div class="input" class="days">
                     <!-- Hours -->
                     {{ days.wed_hours(class='hour') }}
@@ -93,7 +105,7 @@
 
             <!-- Thursday -->
             <div class="day" id="4">
-                <h3>Thursday, {{ week[3] }}</h3>
+                <h3>Thursday, {{ week[4] }}</h3>
                 <div class="input" class="days">
                     <!-- Hours -->
                     {{ days.thu_hours(class='hour') }}
@@ -106,7 +118,7 @@
 
             <!-- Friday -->
             <div class="day" id="5">
-                <h3>Friday, {{ week[4] }}</h3>
+                <h3>Friday, {{ week[5] }}</h3>
                 <div class="input" class="days">
                     <!-- Hours -->
                     {{ days.fri_hours(class='hour') }}
@@ -119,7 +131,7 @@
 
             <!-- Saturday -->
             <div class="day" id="6">
-                <h3>Saturday, {{ week[5] }}</h3>
+                <h3>Saturday, {{ week[6] }}</h3>
                 <div class="input" class="days">
                     <!-- Hours -->
                     {{ days.sat_hours(class='hour') }}
@@ -127,19 +139,6 @@
                     {{ days.sat_location(class='local') }}
                     <!-- Job Descrition -->
                     {{ days.sat_job_description(class='des') }}
-                </div>
-            </div>
-
-            <!-- Sunday -->
-            <div class="day" id="7">
-                <h3>Sunday, {{ week[6] }}</h3>
-                <div class="input" class="days">
-                    <!-- Hours -->
-                    {{ days.sun_hours(class='hour') }}
-                    <!-- Location -->
-                    {{ days.sun_location(class='local') }}
-                    <!-- Job Descrition -->
-                    {{ days.sun_job_description(class='des') }}
                 </div>
             </div>
         </div>
